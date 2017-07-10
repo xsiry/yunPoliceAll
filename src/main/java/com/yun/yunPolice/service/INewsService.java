@@ -1,0 +1,18 @@
+package com.yun.yunPolice.service;
+
+import com.yun.yunPolice.pojo.News;
+
+import java.util.List;
+
+/**
+ * Created by xsiry on 2017/7/10.
+ */
+public interface INewsService {
+    public List<News> getList(int pageNo);
+
+    public News get(int id);
+
+    public boolean update(News record);
+
+    public boolean del(int id);
+}
