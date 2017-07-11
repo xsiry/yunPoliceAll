@@ -62,12 +62,34 @@
                 imgs = #{imgs,jdbcType=VARCHAR},
             </if>
             <if test="category != null" >
-                imgs = #{category,jdbcType=VARCHAR},
+                category = #{category,jdbcType=VARCHAR},
             </if>
             <if test="top != null" >
-                imgs = #{top,jdbcType=VARCHAR},
+                top = #{top,jdbcType=VARCHAR},
             </if>
         </set>
         WHERE id = #{id,jdbcType=INTEGER}
     </update>
+
+    <update id="applyTop">
+        UPDATE news
+        <set >
+            top = 1,
+        </set>
+        WHERE id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="cancelTop">
+        UPDATE news
+        <set >
+            top = 0,
+        </set>
+        WHERE id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="applyTotalTop" resultType="Integer">
+        SELECT count(id)
+        FROM news WHERE top = 1;
+    </select>
+
 </mapper>

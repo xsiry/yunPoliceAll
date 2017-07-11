@@ -108,4 +108,32 @@ public class NewsController {
 
         return bool;
     }
+
+    @RequestMapping(value = "applyTop/{id}", method = RequestMethod.POST)
+    public @ResponseBody Boolean applyTop(@PathVariable("id") Integer id) {
+        boolean bool = false;
+        try {
+            logger.info("RequestMapping('applyTop') Param{id: " + id + "}");
+            bool = newsService.applyTop(id);
+            logger.info("ResponseBody('applyTop') Boolean(true)");
+        } catch (Exception e) {
+            logger.error("ResponseBody('applyTop') Boolean(false) error: " + e.getMessage());
+        }
+
+        return bool;
+    }
+
+    @RequestMapping(value = "cancelTop/{id}", method = RequestMethod.POST)
+    public @ResponseBody Boolean cancelTop(@PathVariable("id") Integer id) {
+        boolean bool = false;
+        try {
+            logger.info("RequestMapping('cancelTop') Param{id: " + id + "}");
+            bool = newsService.cancelTop(id);
+            logger.info("ResponseBody('cancelTop') Boolean(true)");
+        } catch (Exception e) {
+            logger.error("ResponseBody('cancelTop') Boolean(false) error: " + e.getMessage());
+        }
+
+        return bool;
+    }
 }

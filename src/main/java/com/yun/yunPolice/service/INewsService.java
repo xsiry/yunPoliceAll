@@ -19,4 +19,8 @@ public interface INewsService {
     public boolean update(News record);
 
     public boolean del(int id);
+
+    public boolean applyTop(int id);
+
+    public boolean cancelTop(int id);
 }

@@ -41,7 +41,7 @@ public class NewsServiceImpl implements INewsService{
 
     public Boolean save(News record) {
         boolean bool = false;
-        Integer count = newsDao.save(record);
+        int count = newsDao.save(record);
         if (count > 0) {
             bool = true;
         }
@@ -50,7 +50,7 @@ public class NewsServiceImpl implements INewsService{
 
     public boolean update(News record) {
         boolean bool = false;
-        Integer count = newsDao.update(record);
+        int count = newsDao.update(record);
         if (count > 0) {
             bool = true;
         }
@@ -59,7 +59,28 @@ public class NewsServiceImpl implements INewsService{
 
     public boolean del(int id) {
         boolean bool = false;
-        Integer count = newsDao.del(id);
+        int count = newsDao.del(id);
+        if (count > 0) {
+            bool = true;
+        }
+        return bool;
+    }
+
+    public boolean applyTop(int id) {
+        boolean bool = false;
+        int applyTotal = newsDao.applyTotalTop();
+        if (applyTotal <= 5) {
+            int count = newsDao.applyTop(id);
+            if (count > 0) {
+                bool = true;
+            }
+        }
+        return bool;
+    }
+
+    public boolean cancelTop(int id) {
+        boolean bool = false;
+        int count = newsDao.cancelTop(id);
         if (count > 0) {
             bool = true;
         }

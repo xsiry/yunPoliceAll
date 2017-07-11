@@ -36,7 +36,7 @@ define(function(require, exports, module) {
       })
 
       $.root_.on("click", '.row_btn_preview', function(e) {
-        var rowid = $(e.currentTarget).attr('rowid');
+        var rowid = $(e.currentTarget).data('rowid');
         var fun = function(dialogRef) {
           var row = manager.getRow(rowid);
           $('.new_title h3').text(row.title);
@@ -96,12 +96,12 @@ define(function(require, exports, module) {
 
       // bind grid edit
       $.root_.on("click", '.row_btn_edit', function(e) {
-        var id = $(e.currentTarget).attr('id');
+        var id = $(e.currentTarget).data('id');
         editRow(id);
       })
       $.root_.on("click", '.row_btn_del', function(e) {
-        var id = $(e.currentTarget).attr('id');
-        var name = $(e.currentTarget).attr('name');
+        var id = $(e.currentTarget).data('id');
+        var name = $(e.currentTarget).data('name');
         delRow(id, name);
       })
     }

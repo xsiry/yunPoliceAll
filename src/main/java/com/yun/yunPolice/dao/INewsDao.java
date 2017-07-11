@@ -21,4 +21,10 @@ public interface INewsDao {
     Integer update(News record);
 
     Integer del(@Param("id") int id);
+
+    Integer applyTop(@Param("id") int id);
+
+    Integer cancelTop(@Param("id") int id);
+
+    Integer applyTotalTop();
 }

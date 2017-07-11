@@ -93,7 +93,6 @@ define(function(require, exports, module) {
 
   function news_detail() {
     var id = $('input[name="newsid"]').val();
-    console.log(id)
     if (id && id != "undefined" && $('.news_detail')) {
       $.ajax({
         type: 'GET',
