@@ -22,17 +22,18 @@
     </select>
 
     <select id="get" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-        SELECT t1.msgid, t1.ucid, t1.machineNo, t1.createTime, t1.content, t1.adminReply, t1.isShow
-        FROM news ORDER BY times DESC limit #{page,jdbcType=INTEGER}, #{limit,jdbcType=INTEGER};
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM news WHERE id = #{id,jdbcType=INTEGER};
     </select>
 
     <delete id="del" parameterType="java.lang.Integer">
-        delete from news
-        where msgid = #{id,jdbcType=INTEGER}
+        DELETE FROM news
+        WHERE id = #{id,jdbcType=INTEGER}
     </delete>
 
     <update id="update" parameterType="com.yun.yunPolice.pojo.News" >
-        update news
+        UPDATE news
         <set >
             <if test="title != null" >
               title = #{title,jdbcType=VARCHAR},
@@ -50,6 +51,6 @@
                 title = #{imgs,jdbcType=VARCHAR},
             </if>
         </set>
-        where id = #{id,jdbcType=INTEGER}
+        WHERE id = #{id,jdbcType=INTEGER}
     </update>
 </mapper>
