@@ -26,15 +26,17 @@ public class NewsController {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping(value = "getNews", method = RequestMethod.GET)
-    public @ResponseBody Map<String, Object> getNews(@PathParam(value = "pageNo") Integer pageNo) {
+    public @ResponseBody Map<String, Object> getNews(@PathParam(value = "page") Integer page, @PathParam(value = "pagesize") Integer pagesize, @PathParam(value = "sortname") String sortname, @PathParam(value = "sortorder") String sortorder) {
         Map<String, Object> map = new HashMap<String, Object>();
         try {
-            logger.info("RequestMapping('getNews') Param{pageNo: " + pageNo + "}");
+            logger.info("RequestMapping('getNews') Param{page: " + page + "}");
             @SuppressWarnings("unchecked")
 //            HashMap<String, Object> sessionObj = (HashMap<String, Object>) WebUtils.getSessionAttribute(request, TOKEN);
-            List<News> list = newsService.getList(pageNo);
+            List<News> list = newsService.getList(page, pagesize, sortname, sortorder);
+            Integer total = newsService.totalList();
             map.put("success", true);
-            map.put("list", list);
+            map.put("Rows", list);
+            map.put("Total", total);
             logger.info("ResponseBody('getNews') Map(success:true)");
         } catch (Exception e) {
             map.put("success", false);

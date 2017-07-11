@@ -15,10 +15,14 @@
         id, title, author, source, content, imgs, times
     </sql>
 
-    <select id="getList" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <select id="getList" parameterType="HashMap" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>
-        FROM news ORDER BY times DESC limit #{page,jdbcType=INTEGER}, #{limit,jdbcType=INTEGER};
+        FROM news ORDER BY  #{sortname,jdbcType=VARCHAR}  #{sortorder,jdbcType=VARCHAR} LIMIT #{page,jdbcType=INTEGER}, #{pagesize,jdbcType=INTEGER};
+    </select>
+
+    <select id="totalList" resultType="Integer">
+        SELECT count(id) FROM news;
     </select>
 
     <select id="get" parameterType="java.lang.Integer" resultMap="BaseResultMap">

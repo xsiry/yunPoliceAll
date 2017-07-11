@@ -8,7 +8,7 @@ import java.util.Date;
 public class News {
     private int id;
     private String title;
-    private Date times;
+    private String times;
     private String author;
     private String source;
     private String content;
@@ -30,11 +30,11 @@ public class News {
         this.title = title;
     }
 
-    public Date getTimes() {
+    public String getTimes() {
         return times;
     }
 
-    public void setTimes(Date times) {
+    public void setTimes(String times) {
         this.times = times;
     }
 

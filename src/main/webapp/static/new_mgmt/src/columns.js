@@ -4,11 +4,6 @@ define([{
   minWidth: 100,
   width: '15%'
 }, {
-  display: '链接',
-  name: 'newsurl',
-  minWidth: 100,
-  width: '10%'
-}, {
   display: '作者',
   name: 'author',
   minWidth: 120,
@@ -19,14 +14,6 @@ define([{
   minWidth: 60,
   width: '10%'
 }, {
-  display: '导读',
-  name: 'introduction',
-  minWidth: 140,
-  width: '10%',
-  render: function(rowdata, rowindex, value) {
-    return rowdata.introduction.substr(0, 50);
-  }
-}, {
   display: '图片',
   name: 'imgs',
   minWidth: 60,
@@ -35,7 +22,7 @@ define([{
     var imgLabel = "";
     var imgs = rowdata.imgs.split(';');
     $.each(imgs, function(i, url) {
-      if (url != "") imgLabel += '<img style="margin-right:10px;width: 50px;height: 50px;" src="' + url + '">';
+      if (url != "") imgLabel += '<img style="margin-right:10px;width: 50px;height: 28px;" src="' + url + '">';
     })
     return imgLabel;
   }
@@ -43,7 +30,7 @@ define([{
   display: '内容',
   name: 'content',
   minWidth: 60,
-  width: '15%',
+  width: '30%',
   render: function(rowdata, rowindex, value) {
     return rowdata.content.substr(0, 50);
   }

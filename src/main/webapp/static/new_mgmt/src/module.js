@@ -41,7 +41,6 @@ define(function(require, exports, module) {
           var row = manager.getRow(rowid);
           $('.new_title h3').text(row.title);
           $('.new_author').text(row.author);
-          $('.new_introduction p').html(row.introduction);
           $('.new_conten').html(row.content);
           $('.new_source').text(row.source);
           $('.new_times').text(row.times);
@@ -119,8 +118,8 @@ define(function(require, exports, module) {
       onSelectRow: function(rowdata, rowindex) {
         $("#txtrowindex").val(rowindex);
       },
-      url: 'query/table',
-      parms: { source: 'news' },
+      url: '/apps/getNews.json',
+      // parms: { source: 'news' },
       method: "get",
       dataAction: 'server',
       usePager: true,
@@ -247,7 +246,7 @@ define(function(require, exports, module) {
       id: 'newModal',
       title: title,
       size: 'size-wide',
-      message: $('<div></div>').load('app/new_mgmt_modal.html'),
+      message: $('<div></div>').load('apps/new_mgmt_modal.html'),
       cssClass: 'modal inmodal fade',
       buttons: [{
         type: 'submit',
@@ -276,7 +275,7 @@ define(function(require, exports, module) {
       id: 'previewModal',
       title: title,
       size:  'size-wide',
-      message: $('<div></div>').load('app/new_mgmt_preview.html'),
+      message: $('<div></div>').load('apps/new_mgmt_preview.html'),
       cssClass: 'modal inmodal fade',
       buttons: [{
         id: 'previewModalClose',
