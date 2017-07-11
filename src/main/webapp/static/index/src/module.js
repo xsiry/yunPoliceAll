@@ -4,6 +4,7 @@ define(function(require, exports, module) {
   module.exports = {
     menus: [],
     init: function(data) {
+      this.hideMenus(); //隐藏菜单
       this.menus = data.map(function(menu) {
         return menuGenerate(menu);
       });
@@ -16,7 +17,7 @@ define(function(require, exports, module) {
       $('#side-menu').metisMenu();
 
       var user = require('./user_data');
-      this.setProfile(user)
+      this.setProfile(user);
       this._bindUI();
     },
     _bindUI: function() {
@@ -43,9 +44,15 @@ define(function(require, exports, module) {
       }, 1300);
     },
     setProfile: function(user) {
+      window.location.href = '#apps/new_mgmt.html';
       $('ul#side-menu .profile_img').attr('src', user.img);
       $('ul#side-menu .profile_name').text(user.name);
       $('ul#side-menu .profile_role').text(user.role);
+    },
+    hideMenus: function () {
+      $('div.row.border-bottom').hide(); //隐藏顶部菜单、导航
+      $('#page-wrapper').css('margin', 0); //隐藏左侧菜单
+      $('#side-menu').css('display','none'); //隐藏左侧菜单
     }
   };
 

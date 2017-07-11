@@ -11,7 +11,6 @@ define(function(require, exports, module) {
     _bindUI: function() {
       $.root_.off('click', '.new_detail').on('click', '.new_detail', function(e) {
         var newsid = $(e.currentTarget).data("newsid");
-        console.log(newsid)
         loadURL('../apps/news_detail.html', newsid);
         e.preventDefault();
         rowobj = null;

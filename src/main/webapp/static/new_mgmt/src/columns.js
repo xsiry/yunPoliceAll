@@ -2,17 +2,17 @@ define([{
   display: '标题',
   name: 'title',
   minWidth: 100,
-  width: '15%'
+  width: '35%'
 }, {
   display: '作者',
   name: 'author',
   minWidth: 120,
-  width: '5%'
+  width: '10%'
 }, {
   display: '文章来源',
   name: 'source',
   minWidth: 60,
-  width: '10%'
+  width: '20%'
 }, {
   display: '图片',
   name: 'imgs',
@@ -25,14 +25,6 @@ define([{
       if (url != "") imgLabel += '<img style="margin-right:10px;width: 50px;height: 28px;" src="' + url + '">';
     })
     return imgLabel;
-  }
-}, {
-  display: '内容',
-  name: 'content',
-  minWidth: 60,
-  width: '30%',
-  render: function(rowdata, rowindex, value) {
-    return rowdata.content.substr(0, 50);
   }
 }, {
   display: '发表时间',
