@@ -13,6 +13,9 @@ public class News {
     private String source;
     private String content;
     private String imgs;
+    private String category;
+    private int top;
+
 
     public int getId() {
         return id;
@@ -68,5 +71,21 @@ public class News {
 
     public void setImgs(String imgs) {
         this.imgs = imgs;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public int getTop() {
+        return top;
+    }
+
+    public void setTop(int top) {
+        this.top = top;
     }
 }

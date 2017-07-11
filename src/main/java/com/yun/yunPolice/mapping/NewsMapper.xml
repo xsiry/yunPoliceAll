@@ -9,10 +9,12 @@
         <result column="content" property="content" jdbcType="VARCHAR" />
         <result column="imgs" property="imgs" jdbcType="VARCHAR" />
         <result column="times" property="times" jdbcType="VARCHAR"/>
+        <result column="category" property="category" jdbcType="VARCHAR"/>
+        <result column="top" property="top" jdbcType="INTEGER"/>
     </resultMap>
 
     <sql id="Base_Column_List" >
-        id, title, author, source, content, imgs, times
+        id, title, author, source, content, imgs, times, category, top
     </sql>
 
     <select id="getList" parameterType="HashMap" resultMap="BaseResultMap">
@@ -37,8 +39,8 @@
     </delete>
 
     <insert id="save" parameterType="com.yun.yunPolice.pojo.News">
-        insert into news (title, author, source, content, imgs, times)
-        values (#{title,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{imgs,jdbcType=VARCHAR}, #{times,jdbcType=VARCHAR})
+        insert into news (title, author, source, content, imgs, times, category, top)
+        values (#{title,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{imgs,jdbcType=VARCHAR}, #{times,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR}, #{top,jdbcType=INTEGER})
     </insert>
 
     <update id="update" parameterType="com.yun.yunPolice.pojo.News" >
@@ -58,6 +60,12 @@
             </if>
             <if test="imgs != null" >
                 imgs = #{imgs,jdbcType=VARCHAR},
+            </if>
+            <if test="category != null" >
+                imgs = #{category,jdbcType=VARCHAR},
+            </if>
+            <if test="top != null" >
+                imgs = #{top,jdbcType=VARCHAR},
             </if>
         </set>
         WHERE id = #{id,jdbcType=INTEGER}
