@@ -7,8 +7,8 @@
         <result column="author" property="author" jdbcType="VARCHAR" />
         <result column="source" property="source" jdbcType="VARCHAR" />
         <result column="content" property="content" jdbcType="VARCHAR" />
-        <result column="imgs" property="imgs" jdbcType="DATE" />
-        <result column="times" property="times"/>
+        <result column="imgs" property="imgs" jdbcType="VARCHAR" />
+        <result column="times" property="times" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List" >
@@ -37,8 +37,7 @@
     </delete>
 
     <insert id="save" parameterType="com.yun.yunPolice.pojo.News">
-        insert into news (title, author, source, content, imgs, times
-        )
+        insert into news (title, author, source, content, imgs, times)
         values (#{title,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{imgs,jdbcType=VARCHAR}, #{times,jdbcType=VARCHAR})
     </insert>
 
