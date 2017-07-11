@@ -6,13 +6,14 @@ package com.yun.yunPolice.service.impl;
 
 import com.yun.yunPolice.dao.INewsDao;
 import com.yun.yunPolice.pojo.News;
+import com.yun.yunPolice.service.INewsService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
 
-@Service("NewsService")
-public class NewsServiceImpl {
+@Service("newsService")
+public class NewsServiceImpl implements INewsService{
     @Resource
     private INewsDao iNewsDao;
 

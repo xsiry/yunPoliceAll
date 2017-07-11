@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="yun_police@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.2">
+    <root id="1"/>
+    <schema id="2" parent="1" name="yun_police">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="ali_sports"/>
+    <schema id="4" parent="1" name="information_schema"/>
+    <schema id="5" parent="1" name="list_lktz"/>
+    <schema id="6" parent="1" name="mysql"/>
+    <schema id="7" parent="1" name="performance_schema"/>
+    <schema id="8" parent="1" name="sys"/>
+    <schema id="9" parent="1" name="ywh_db"/>
+    <table id="10" parent="2" name="news">
+      <Comment>新闻</Comment>
+    </table>
+    <column id="11" parent="10" name="id">
+      <Position>1</Position>
+      <Comment>新闻ID</Comment>
+      <DataType>bigint(20)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="12" parent="10" name="title">
+      <Position>2</Position>
+      <Comment>标题</Comment>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="13" parent="10" name="times">
+      <Position>3</Position>
+      <Comment>时间</Comment>
+      <DataType>datetime|0</DataType>
+    </column>
+    <column id="14" parent="10" name="author">
+      <Position>4</Position>
+      <Comment>作者</Comment>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="15" parent="10" name="source">
+      <Position>5</Position>
+      <Comment>来源</Comment>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="16" parent="10" name="content">
+      <Position>6</Position>
+      <Comment>内容</Comment>
+      <DataType>text|0</DataType>
+    </column>
+    <column id="17" parent="10" name="imgs">
+      <Position>7</Position>
+      <Comment>图片</Comment>
+      <DataType>varchar(200)|0</DataType>
+    </column>
+    <key id="18" parent="10" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+  </database-model>
+</dataSource>

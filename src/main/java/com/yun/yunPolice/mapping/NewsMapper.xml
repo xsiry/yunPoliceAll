@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.yun.yunPolice.dao.IUserDao" >
+<mapper namespace="com.yun.yunPolice.dao.INewsDao" >
     <resultMap id="BaseResultMap" type="com.yun.yunPolice.pojo.News" >
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="title" property="title" jdbcType="VARCHAR" />
         <result column="author" property="author" jdbcType="VARCHAR" />
         <result column="source" property="source" jdbcType="VARCHAR" />
         <result column="content" property="content" jdbcType="VARCHAR" />
-        <result column="imgs" property="imgs" jdbcType="VARCHAR" />
-        <result column="times" property="times" jdbcType="DATETIME" />
+        <result column="imgs" property="imgs" jdbcType="DATE" />
+        <result column="times" property="times"/>
     </resultMap>
 
     <sql id="Base_Column_List" >
@@ -21,7 +21,7 @@
         FROM news ORDER BY times DESC limit #{page,jdbcType=INTEGER}, #{limit,jdbcType=INTEGER};
     </select>
 
-    <select id="get" parameterType="java.lang.Integer" resultMap="com.yun.yunPolice.pojo.News">
+    <select id="get" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         SELECT t1.msgid, t1.ucid, t1.machineNo, t1.createTime, t1.content, t1.adminReply, t1.isShow
         FROM news ORDER BY times DESC limit #{page,jdbcType=INTEGER}, #{limit,jdbcType=INTEGER};
     </select>

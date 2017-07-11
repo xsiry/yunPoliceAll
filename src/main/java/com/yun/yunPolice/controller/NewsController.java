@@ -19,10 +19,10 @@ import java.util.Map;
  */
 @Controller
 @Scope(value = "prototype")
-@RequestMapping("/news/")
+@RequestMapping("/apps/")
 public class NewsController {
     @Resource
-    private INewsService iNewsService;
+    private INewsService newsService;
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping(value = "getNews", method = RequestMethod.GET)
@@ -32,7 +32,7 @@ public class NewsController {
             logger.info("RequestMapping('getNews') Param{pageNo: " + pageNo + "}");
             @SuppressWarnings("unchecked")
 //            HashMap<String, Object> sessionObj = (HashMap<String, Object>) WebUtils.getSessionAttribute(request, TOKEN);
-            List<News> list = iNewsService.getList(pageNo);
+            List<News> list = newsService.getList(pageNo);
             map.put("success", true);
             map.put("list", list);
             logger.info("ResponseBody('getNews') Map(success:true)");
@@ -52,7 +52,7 @@ public class NewsController {
             logger.info("RequestMapping('getNews') Param{id: " + id + "}");
             @SuppressWarnings("unchecked")
 //            HashMap<String, Object> sessionObj = (HashMap<String, Object>) WebUtils.getSessionAttribute(request, TOKEN);
-            News news = iNewsService.get(id);
+            News news = newsService.get(id);
             map.put("success", true);
             map.put("news", news);
             logger.info("ResponseBody('getNews') Map(success:true)");
@@ -70,7 +70,7 @@ public class NewsController {
         boolean bool = false;
         try {
             logger.info("RequestMapping('newsUpdate') Param{News: " + record + "}");
-            bool = iNewsService.update(record);
+            bool = newsService.update(record);
             logger.info("ResponseBody('newsUpdate') Boolean(true)");
         } catch (Exception e) {
             logger.error("ResponseBody('newsUpdate') Boolean(false) error: " + e.getMessage());
@@ -84,7 +84,7 @@ public class NewsController {
         boolean bool = false;
         try {
             logger.info("RequestMapping('newsDelete') Param{id: " + id + "}");
-            bool = iNewsService.del(id);
+            bool = newsService.del(id);
             logger.info("ResponseBody('newsDelete') Boolean(true)");
         } catch (Exception e) {
             logger.error("ResponseBody('newsDelete') Boolean(false) error: " + e.getMessage());
