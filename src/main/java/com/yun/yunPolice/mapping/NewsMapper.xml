@@ -36,6 +36,12 @@
         WHERE id = #{id,jdbcType=INTEGER}
     </delete>
 
+    <insert id="save" parameterType="com.yun.yunPolice.pojo.News">
+        insert into news (title, author, source, content, imgs, times
+        )
+        values (#{title,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{imgs,jdbcType=VARCHAR}, #{times,jdbcType=VARCHAR})
+    </insert>
+
     <update id="update" parameterType="com.yun.yunPolice.pojo.News" >
         UPDATE news
         <set >
@@ -43,16 +49,16 @@
               title = #{title,jdbcType=VARCHAR},
             </if>
             <if test="author != null" >
-                title = #{author,jdbcType=VARCHAR},
+                author = #{author,jdbcType=VARCHAR},
             </if>
             <if test="source != null" >
-                title = #{source,jdbcType=VARCHAR},
+                source = #{source,jdbcType=VARCHAR},
             </if>
             <if test="content != null" >
-                title = #{content,jdbcType=VARCHAR},
+                content = #{content,jdbcType=VARCHAR},
             </if>
             <if test="imgs != null" >
-                title = #{imgs,jdbcType=VARCHAR},
+                imgs = #{imgs,jdbcType=VARCHAR},
             </if>
         </set>
         WHERE id = #{id,jdbcType=INTEGER}

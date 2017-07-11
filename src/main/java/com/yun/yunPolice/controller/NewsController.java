@@ -19,7 +19,7 @@ import java.util.Map;
  */
 @Controller
 @Scope(value = "prototype")
-@RequestMapping("/apps/")
+@RequestMapping("/news/")
 public class NewsController {
     @Resource
     private INewsService newsService;
@@ -56,7 +56,7 @@ public class NewsController {
 //            HashMap<String, Object> sessionObj = (HashMap<String, Object>) WebUtils.getSessionAttribute(request, TOKEN);
             News news = newsService.get(id);
             map.put("success", true);
-            map.put("news", news);
+            map.put("data", news);
             logger.info("ResponseBody('getNews') Map(success:true)");
         } catch (Exception e) {
             map.put("success", false);
@@ -65,6 +65,20 @@ public class NewsController {
         }
 
         return map;
+    }
+
+    @RequestMapping(value = "save", method = RequestMethod.POST)
+    public @ResponseBody Boolean save(@RequestBody News record) {
+        boolean bool = false;
+        try {
+            logger.info("RequestMapping('newsSave') Param{News: " + record + "}");
+            bool = newsService.save(record);
+            logger.info("ResponseBody('newsSave') Boolean(true)");
+        } catch (Exception e) {
+            logger.error("ResponseBody('newsSave') Boolean(false) error: " + e.getMessage());
+        }
+
+        return bool;
     }
 
     @RequestMapping(value = "update", method = RequestMethod.POST)

@@ -59,7 +59,7 @@ define(function(require, exports, module) {
           type: 'upload_img',
           size: 'size-wide',
           closeByBackdrop: false,
-          message: $('<div class="img_upload" data-url="system/fileupload" data-mincount=1 data-maxcount=3 data-types="image, flash" data-async=false></div>')
+          message: $('<div class="img_upload" data-url="system/fileupload" data-mincount=1 data-maxcount=1 data-types="image, flash" data-async=false></div>')
             .load('app/upload_file.html'),
           onshow: function(dialogRef) {
             if($('.modal-backdrop').length > 1) {$('.modal-backdrop').last().remove()};
@@ -118,7 +118,7 @@ define(function(require, exports, module) {
       onSelectRow: function(rowdata, rowindex) {
         $("#txtrowindex").val(rowindex);
       },
-      url: '/apps/getNews.json',
+      url: '/news/getNews.json',
       // parms: { source: 'news' },
       method: "get",
       dataAction: 'server',
@@ -155,25 +155,22 @@ define(function(require, exports, module) {
   function editRow(id) {
     $.ajax({
       type : 'GET',
-      url : 'query/table',
+      url : '/news/getNew',
       dataType : 'json',
       data : {
-        source: 'news',
-        sourceid: id
+        id: id
       },
-      success : function(data) {
-        if (data) {
+      success : function(responseText) {
+        if (responseText.success) {
           var fun = function() {
             newModalValidation();
             var imgs = [];
-            $.each(data, function(key, val) {
+            $.each(responseText.data, function(key, val) {
               $('#newModalForm input[name="'+ key +'"]').val(val);
               if (key == 'imgs') {
                 imgs = val.split(';');
               }else if (key == 'content') {
                 $('pre.flex.x-content').html(val);
-              }else if (key == 'introduction') {
-                $('pre.flex.x-introduction').html(val);
               }
             })
             $.each(imgs, function(i , url) {
@@ -199,15 +196,11 @@ define(function(require, exports, module) {
       cancelButtonText: '取消'
     }).then(function() {
       $.ajax({
-        type : 'GET',
-        url : 'system/del',
+        type : 'DELETE',
+        url : '/news/del/'+id,
         dataType : 'json',
-        data : {
-          tname: 'news',
-          tid: id
-        },
         success : function(data) {
-          if (data.success) {
+          if (data) {
             manager.reload();
             swal(
               '删除成功:)',
@@ -344,37 +337,46 @@ define(function(require, exports, module) {
         var bv = $form.data('formValidation');
 
         // Use Ajax to submit form data
-        var formVals = {times: dateFactory ('', new Date(), true), content: $('pre.flex.x-content').html(), introduction: $('pre.flex.x-introduction').html()};
+        var formVals = {times: dateFactory('', new Date(), true), content: $('pre.flex.x-content').html()};
         $.each($form.serializeArray(), function(i, o) {
           formVals[o.name] = o.value;
         });
-        var data = {
-          actionname: 'news',
-          datajson: JSON.stringify(formVals)
-        };
-        $.post('save/table', data, function(result) {
-          var msg;
-          manager.reload();
-          toastr.options = {
-            closeButton: true,
-            progressBar: true,
-            showMethod: 'slideDown',
-            timeOut: 4000
-          };
-          if (result.success == true) {
-            msg = "广告业务操作成功！";
-            toastr.success(msg);
-          } else {
-            msg = "广告业务操作失败！";
-            toastr.error(msg);
-          };
 
-          $('#newModalClose').click();
-        }, 'json');
+        var url = formVals['id'] ? 'news/update' : 'news/save';
+
+        $.ajax({
+          type : 'POST',
+          contentType : 'application/json',
+          url : url,
+          dataType : 'json',
+          data : JSON.stringify(formVals),
+          success : function(data) {
+            var msg;
+            manager.reload();
+            toastr.options = {
+                closeButton: true,
+                progressBar: true,
+                showMethod: 'slideDown',
+                timeOut: 4000
+            };
+            if (data) {
+                msg = "广告业务操作成功！";
+                toastr.success(msg);
+            } else {
+                msg = "广告业务操作失败！";
+                toastr.error(msg);
+            };
+
+            $('#newModalClose').click();
+          },
+          error : function(e) {
+              console.log(e);
+          }
+        });
       });
   };
 
-  function dateFactory (str, date, yearBool) {
+  function dateFactory(str, date, yearBool) {
     function p(s) {
       return s < 10 ? '0' + s : s;
     }
@@ -390,8 +392,8 @@ define(function(require, exports, module) {
     var h = d.getHours(); //获取当前小时数(0-23)
     var m = d.getMinutes(); //获取当前分钟数(0-59)
     var s = d.getSeconds();
-    var mydatetime = yearBool ? [year, p(month), p(date), p(h), p(m), p(s)] : [p(month), p(date)];
-    var now = mydatetime.join('-');
+    var mydatetime = yearBool ? [[year, p(month), p(date)], [p(h), p(m), p(s)]] : [p(month), p(date)];
+    var now = yearBool ?  [mydatetime[0].join('-'),mydatetime[1].join('-')].join(' ') : mydatetime.join('-');
     return now;
   }
 

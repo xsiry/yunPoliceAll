@@ -16,6 +16,8 @@ public interface INewsDao {
 
     News get(@Param("id") int id);
 
+    Integer save(News record);
+
     Integer update(News record);
 
     Integer del(@Param("id") int id);

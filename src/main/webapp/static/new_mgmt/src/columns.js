@@ -50,8 +50,8 @@ define([{
   render: function(rowdata, rowindex, value) {
     var h = "";
     h += "<button type='button' rowid='" + rowindex + "' name='" + rowdata.title + "' class='btn btn-outline btn-danger btn-xs row-btn row_btn_preview'>预览</button> ";
-    h += "<button type='button' id='" + rowdata.news_id + "' class='btn btn-outline btn-info btn-xs row-btn row_btn_edit'>修改</button> ";
-    h += "<button type='button' id='" + rowdata.news_id + "' name='" + rowdata.title + "' class='btn btn-outline btn-danger btn-xs row-btn row_btn_del'>删除</button> ";
+    h += "<button type='button' id='" + rowdata.id + "' class='btn btn-outline btn-info btn-xs row-btn row_btn_edit'>修改</button> ";
+    h += "<button type='button' id='" + rowdata.id + "' name='" + rowdata.title + "' class='btn btn-outline btn-danger btn-xs row-btn row_btn_del'>删除</button> ";
     return h;
   }
 }])

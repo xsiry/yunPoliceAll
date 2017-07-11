@@ -39,9 +39,18 @@ public class NewsServiceImpl implements INewsService{
         return news;
     }
 
-    public boolean update(News news) {
+    public Boolean save(News record) {
         boolean bool = false;
-        Integer count = newsDao.update(news);
+        Integer count = newsDao.save(record);
+        if (count > 0) {
+            bool = true;
+        }
+        return bool;
+    }
+
+    public boolean update(News record) {
+        boolean bool = false;
+        Integer count = newsDao.update(record);
         if (count > 0) {
             bool = true;
         }

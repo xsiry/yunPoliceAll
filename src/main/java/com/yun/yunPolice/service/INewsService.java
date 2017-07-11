@@ -11,7 +11,10 @@ public interface INewsService {
     public List<News> getList(int page, int pagesize, String sortname, String sortorder);
 
     public Integer totalList();
+
     public News get(int id);
+
+    public Boolean save(News record);
 
     public boolean update(News record);
 
