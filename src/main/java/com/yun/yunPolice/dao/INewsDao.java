@@ -27,4 +27,6 @@ public interface INewsDao {
     Integer cancelTop(@Param("id") int id);
 
     Integer applyTotalTop();
+
+    List<News> getListTop();
 }

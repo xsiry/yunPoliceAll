@@ -87,4 +87,9 @@ public class NewsServiceImpl implements INewsService{
         return bool;
     }
 
+    public List<News> getListTop() {
+        List<News> list = newsDao.getListTop();
+        return list;
+    }
+
 }

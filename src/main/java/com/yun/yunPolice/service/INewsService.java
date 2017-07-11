@@ -23,4 +23,6 @@ public interface INewsService {
     public boolean applyTop(int id);
 
     public boolean cancelTop(int id);
+
+    public List<News> getListTop();
 }

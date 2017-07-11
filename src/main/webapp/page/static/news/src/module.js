@@ -9,7 +9,7 @@ define(function(require, exports, module) {
     _bindUI: function() {
     },
     _loopImages: function() {
-      loopImages();
+      getloopImages();
     },
     _loadContent: function() {
       load();
@@ -118,6 +118,35 @@ define(function(require, exports, module) {
         }
       });
     }
+  }
+
+  function getloopImages() {
+      $.ajax({
+          type: 'GET',
+          url: '/news/getListTop.json',
+          dataType: 'json',
+          success : function(responseText) {
+              if (responseText.success) {
+                  var list = responseText.list;
+                  console.log(list)
+                  var flicks = '';
+                  var loopimgs = '';
+                  $.each(list, function (i, o) {
+                      flicks += '<a href="#"></a>';
+                      loopimgs += '<li><a href="javascript:void(0);" data-newsid='+ o.id +' class="new_detail"><span>'
+                               + '<img src="'+ o.imgs.split(';')[0] +'">'
+                               + '<div class="img_title"><p>' + o.title + '</p>'
+                               + '</div></span></a></li>';
+                  });
+                  $('div.main_visual .flicking_con').empty().append(flicks);
+                  $('div.main_visual .main_image ul').empty().append(loopimgs);
+                  loopImages();
+              }
+          },
+          error: function(e) {
+              console.log(e);
+          }
+      });
   }
 
   // 顶部图片轮播

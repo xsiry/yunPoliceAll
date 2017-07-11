@@ -136,4 +136,24 @@ public class NewsController {
 
         return bool;
     }
+
+    @RequestMapping(value = "getListTop", method = RequestMethod.GET)
+    public @ResponseBody Map<String, Object> getListTop() {
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+            logger.info("RequestMapping('getListTop')");
+            @SuppressWarnings("unchecked")
+//            HashMap<String, Object> sessionObj = (HashMap<String, Object>) WebUtils.getSessionAttribute(request, TOKEN);
+            List<News> list = newsService.getListTop();
+            map.put("success", true);
+            map.put("list", list);
+            logger.info("ResponseBody('getListTop') Map(success:true)");
+        } catch (Exception e) {
+            map.put("success", false);
+            map.put("error", e.getMessage());
+            logger.error("ResponseBody('getListTop') Map(success:false, error:" + e.getMessage() + ")");
+        }
+
+        return map;
+    }
 }

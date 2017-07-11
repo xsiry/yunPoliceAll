@@ -92,4 +92,10 @@
         FROM news WHERE top = 1;
     </select>
 
+    <select id="getListTop" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM news WHERE top = 1 ORDER BY  times DESC;
+    </select>
+
 </mapper>
