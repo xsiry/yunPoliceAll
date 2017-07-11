@@ -104,6 +104,13 @@ define(function(require, exports, module) {
         var name = $(e.currentTarget).data('name');
         delRow(id, name);
       })
+
+      $.root_.on("click", '.row_btn_top', function(e) {
+          var id = $(e.currentTarget).data('id');
+          var name = $(e.currentTarget).data('name');
+          var top = $(e.currentTarget).data('top');
+          setTop(id, name, top);
+      })
     }
   };
 
@@ -234,7 +241,56 @@ define(function(require, exports, module) {
     })
   };
 
-  function newModal(title, onshowFun) {
+    function setTop(id, name, top) {
+        var url = top == 0 ? '/news/applyTop/' : '/news/cancelTop/';
+        swal({
+            title: '确定修改置顶状态?',
+            text: '新闻《' + name + '》将'+ (top==0?'设置置顶':'取消置顶') +'！',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonText: '确定',
+            cancelButtonText: '取消'
+        }).then(function() {
+            $.ajax({
+                type : 'POST',
+                url : url+id,
+                dataType : 'json',
+                success : function(data) {
+                    if (data) {
+                        manager.reload();
+                        swal(
+                            '置顶状态修改成功:)',
+                            '新闻《' + name + '》已' + (top==0?'设置置顶':'取消置顶') + '.',
+                            'success'
+                        )
+                    }else{
+                        swal(
+                            '置顶状态修改失败!',
+                            top == 0 ? '未知错误，请联系管理员或查看日志':'最多只能设置五个新闻置顶',
+                            'error'
+                        )
+                    }
+                },
+                error : function(e) {
+                    swal(
+                        '置顶状态修改失败!',
+                        '未知错误，请联系管理员或查看日志',
+                        'error'
+                    )
+                }
+            });
+        }, function(dismiss) {
+            if (dismiss === 'cancel') {
+                // swal(
+                //   '已取消',
+                //   '新闻《' + name + '》未删除 :)',
+                //   'error'
+                // )
+            }
+        })
+    };
+
+    function newModal(title, onshowFun) {
     var modal = BootstrapDialog.show({
       id: 'newModal',
       title: title,
