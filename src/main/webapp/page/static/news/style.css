@@ -2,7 +2,7 @@
 *{margin:0;padding:0;list-style:none;border:0;}
 
 /* main_image */
-.main_visual{overflow:hidden;position:relative;}
+.main_visual{overflow:hidden;position:relative;display:none;}
 .main_image{padding-bottom:56%;overflow:hidden;position:relative;}
 .main_image ul{width:9999px;overflow:hidden;position:absolute;top:0;left:0}
 .main_image li{float:left;width:100%}
