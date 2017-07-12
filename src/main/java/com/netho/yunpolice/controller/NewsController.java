@@ -1,7 +1,7 @@
-package com.yun.police.controller;
+package com.netho.yunpolice.controller;
 
-import com.yun.police.pojo.News;
-import com.yun.police.service.INewsService;
+import com.netho.yunpolice.pojo.News;
+import com.netho.yunpolice.service.INewsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;

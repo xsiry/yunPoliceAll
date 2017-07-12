@@ -1,4 +1,4 @@
-package com.yun.police.pojo;
+package com.netho.yunpolice.pojo;
 
 /**
  * Created by xsiry on 2017/7/10.

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.yun.police.dao.INewsDao" >
-    <resultMap id="BaseResultMap" type="com.yun.police.pojo.News" >
+<mapper namespace="com.netho.yunpolice.dao.INewsDao" >
+    <resultMap id="BaseResultMap" type="com.netho.yunpolice.pojo.News" >
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="title" property="title" jdbcType="VARCHAR" />
         <result column="author" property="author" jdbcType="VARCHAR" />
@@ -38,12 +38,12 @@
         WHERE id = #{id,jdbcType=INTEGER}
     </delete>
 
-    <insert id="save" parameterType="com.yun.police.pojo.News">
+    <insert id="save" parameterType="com.netho.yunpolice.pojo.News">
         insert into news (title, author, source, content, imgs, times, category, top)
         values (#{title,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{imgs,jdbcType=VARCHAR}, #{times,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR}, #{top,jdbcType=INTEGER})
     </insert>
 
-    <update id="update" parameterType="com.yun.police.pojo.News" >
+    <update id="update" parameterType="com.netho.yunpolice.pojo.News" >
         UPDATE news
         <set >
             <if test="title != null" >

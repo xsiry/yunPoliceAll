@@ -1,12 +1,12 @@
-package com.yun.police.service.impl;
+package com.netho.yunpolice.service.impl;
 
 /**
  * Created by xsiry on 2017/7/10.
  */
 
-import com.yun.police.dao.INewsDao;
-import com.yun.police.pojo.News;
-import com.yun.police.service.INewsService;
+import com.netho.yunpolice.dao.INewsDao;
+import com.netho.yunpolice.pojo.News;
+import com.netho.yunpolice.service.INewsService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @Service("newsService")
-public class NewsServiceImpl implements INewsService{
+public class NewsServiceImpl implements INewsService {
     @Resource
     private INewsDao newsDao;
     @Override

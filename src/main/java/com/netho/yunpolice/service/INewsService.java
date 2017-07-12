@@ -1,6 +1,6 @@
-package com.yun.police.service;
+package com.netho.yunpolice.service;
 
-import com.yun.police.pojo.News;
+import com.netho.yunpolice.pojo.News;
 
 import java.util.List;
 
