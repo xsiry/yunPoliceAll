@@ -56,3 +56,7 @@
 .news_detail_block .pages-date span:last-child {
   margin-left: 20px;
 }
+
+.news_detail_block .pages_content {
+  margin-top: 15px;
+}
