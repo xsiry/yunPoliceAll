@@ -13,7 +13,7 @@
         // 上方是否插入DOM
         me.upInsertDOM = true;
         // loading状态
-        me.loading = false;
+        me.loading = true;
         // 是否锁定
         me.isLockUp = false;
         me.isLockDown = false;
@@ -51,6 +51,12 @@
         if(me.opts.loadDownFn != ''){
             me.$element.append('<div class="'+me.opts.domDown.domClass+'">'+me.opts.domDown.domRefresh+'</div>');
             me.$domDown = $('.'+me.opts.domDown.domClass);
+        }
+
+        // 如果加载上方，事先在上方插入DOM
+        if(me.opts.loadUpFn != ''){
+            me.$element.prepend('<div class="'+me.opts.domUp.domClass+'">'+me.opts.domUp.domRefresh+'</div>');
+            me.$domUp = $('.'+me.opts.domUp.domClass);
         }
 
         // 计算提前加载距离
@@ -141,12 +147,10 @@
         }
 
         var _absMoveY = Math.abs(me._moveY);
-
         // 加载上方
         if(me.opts.loadUpFn != '' && me.touchScrollTop <= 0 && me.direction == 'down' && !me.isLockUp){
             e.preventDefault();
-
-            me.$domUp = $('.'+me.opts.domUp.domClass);
+            me.$domUp = $('.'+ me.opts.domUp.domClass);
             // 如果加载区没有DOM
             if(!me.upInsertDOM){
                 me.$element.prepend('<div class="'+me.opts.domUp.domClass+'"></div>');
