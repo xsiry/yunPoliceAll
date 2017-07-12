@@ -1,6 +1,4 @@
-package com.yun.yunPolice.pojo;
-
-import java.util.Date;
+package com.yun.police.pojo;
 
 /**
  * Created by xsiry on 2017/7/10.

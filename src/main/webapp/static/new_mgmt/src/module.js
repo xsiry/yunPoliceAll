@@ -75,7 +75,7 @@ define(function(require, exports, module) {
               if (reData.success) {
                 var imgs = [];
                 $('#newModalForm div.img_list_show').empty().css('text-align', 'center');
-                $.each(reData.result, function(i, url) {
+                $.each(reData.files, function(i, url) {
                   imgs.push(url);
                   $('#newModalForm div.img_list_show').append('<img style="margin-right:10px;width: 100px;height: 100px;" src="' + url + '">');
                 })
@@ -84,7 +84,7 @@ define(function(require, exports, module) {
               }
             })
             $('#x_file').on('filebatchuploaderror', function(event, data, msg) {
-               consol.log("服务器内部错误，请联系管理员！")
+               console.log("服务器内部错误，请联系管理员！")
             })
           },
           onhidden: function(dialogRef){

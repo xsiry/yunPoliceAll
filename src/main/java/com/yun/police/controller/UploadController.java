@@ -1,4 +1,4 @@
-package com.yun.yunPolice.controller;
+package com.yun.police.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.ServletContext;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,7 +29,7 @@ public class UploadController {
 
     @RequestMapping(value = "fileupload", method = RequestMethod.POST)
     public @ResponseBody
-    Map<String, Object> fileupload(@RequestParam("file_data") CommonsMultipartFile[] files, HttpServletRequest request) {
+    Map<String, Object> fileupload(@RequestParam("file_data") CommonsMultipartFile[] files, ServletContext context) {
         Map<String, Object> map = new HashMap<String, Object>();
         List<String> filepahtls = new ArrayList<String>() ;
         try {
@@ -47,11 +47,11 @@ public class UploadController {
                             //重命名上传后的文件名
                             String fileName = System.currentTimeMillis() + files[i].getOriginalFilename();
                             //定义上传路径
-                            String path =  request.getSession().getServletContext().getRealPath("/") + "upload/" + fileName;
+                            String path = context.getRealPath("/") + "/upload/" + fileName;
                             File localFile = new File(path);
                             files[i].transferTo(localFile);
                             filepahtls.add(path);
-                        }
+                        };
                         int finaltime = (int) System.currentTimeMillis();
                         logger.info("RequestMapping('fileupload') fileName" + files[i].getOriginalFilename() + "times "+(finaltime - pre));
                     } catch (Exception e) {

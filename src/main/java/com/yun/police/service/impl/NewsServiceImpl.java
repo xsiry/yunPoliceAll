@@ -1,12 +1,12 @@
-package com.yun.yunPolice.service.impl;
+package com.yun.police.service.impl;
 
 /**
  * Created by xsiry on 2017/7/10.
  */
 
-import com.yun.yunPolice.dao.INewsDao;
-import com.yun.yunPolice.pojo.News;
-import com.yun.yunPolice.service.INewsService;
+import com.yun.police.dao.INewsDao;
+import com.yun.police.pojo.News;
+import com.yun.police.service.INewsService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -17,7 +17,7 @@ import java.util.List;
 public class NewsServiceImpl implements INewsService{
     @Resource
     private INewsDao newsDao;
-
+    @Override
     public List<News> getList(int page, int pagesize, String sortname, String sortorder) {
         page = (page - 1) * pagesize;
         HashMap<String, Object> map = new HashMap<String, Object>();

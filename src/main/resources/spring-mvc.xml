@@ -10,7 +10,7 @@
                         http://www.springframework.org/schema/mvc
                         http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
     <!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
-    <context:component-scan base-package="com.yun.yunPolice.controller"/>
+    <context:component-scan base-package="com.yun.police.controller"/>
     <!--&lt;!&ndash; 拦截器 &ndash;&gt;-->
     <!--<mvc:interceptors>-->
         <!--<mvc:interceptor>-->
@@ -18,12 +18,12 @@
             <!--<mvc:exclude-mapping path="/login.*"/>-->
             <!--<mvc:exclude-mapping path="/loginOut.*"/>-->
             <!--<mvc:exclude-mapping path="/ping.*"/>-->
-            <!--<bean class="com.yun.yunPolice.interceptor.SessionInterceptor"/>-->
+            <!--<bean clacom.yun.policee.interceptor.SessionInterceptor"/>-->
         <!--</mvc:interceptor>-->
     <!--</mvc:interceptors>-->
     <!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
     <!-- 注解探测器 -->
-    <!--<context:component-scan base-package="com.yun.yunPolice.controller"-->
+    <!--<context:component-scan base-packacom.yun.policee.controller"-->
                             <!--use-default-filters="false">-->
         <!--<context:include-filter type="annotation"-->
                                 <!--expression="org.springframework.stereotype.Controller"/>-->

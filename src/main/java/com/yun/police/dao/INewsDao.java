@@ -1,6 +1,6 @@
-package com.yun.yunPolice.dao;
+package com.yun.police.dao;
 
-import com.yun.yunPolice.pojo.News;
+import com.yun.police.pojo.News;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.HashMap;
