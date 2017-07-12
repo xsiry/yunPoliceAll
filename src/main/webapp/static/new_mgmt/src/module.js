@@ -60,7 +60,7 @@ define(function(require, exports, module) {
           size: 'size-wide',
           closeByBackdrop: false,
           message: $('<div class="img_upload" data-url="system/fileupload" data-mincount=1 data-maxcount=1 data-types="image, flash" data-async=false></div>')
-            .load('app/upload_file.html'),
+            .load('apps/upload_file.html'),
           onshow: function(dialogRef) {
             if($('.modal-backdrop').length > 1) {$('.modal-backdrop').last().remove()};
             if($('.upload_img').length > 1) {$('.upload_img').last().remove()};
