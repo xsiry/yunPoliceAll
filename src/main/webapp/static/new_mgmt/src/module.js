@@ -266,7 +266,7 @@ define(function(require, exports, module) {
                     }else{
                         swal(
                             '置顶状态修改失败!',
-                            top == 0 ? '未知错误，请联系管理员或查看日志':'最多只能设置五个新闻置顶',
+                            top == 1 ? '未知错误，请联系管理员或查看日志':'最多只能设置五个新闻置顶',
                             'error'
                         )
                     }
