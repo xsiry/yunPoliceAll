@@ -2,7 +2,12 @@ define([{
   display: '标题',
   name: 'title',
   minWidth: 100,
-  width: '35%'
+  width: '25%'
+}, {
+  display: '类别',
+  name: 'category',
+  minWidth: 100,
+  width: '10%'
 }, {
   display: '作者',
   name: 'author',

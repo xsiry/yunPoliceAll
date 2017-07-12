@@ -356,30 +356,21 @@ define(function(require, exports, module) {
           validating: 'glyphicon glyphicon-refresh'
         },
         fields: {
-          // Name: {
-          //   validators: {
-          //     notEmpty: {}
-          //   }
-          // },
-          // BusinessFirm: {
-          //   validators: {
-          //     notEmpty: {}
-          //   }
-          // },
-          // BusinessContact: {
-          //   validators: {
-          //     notEmpty: {}
-          //   }
-          // },
-          // PhoneNumber: {
-          //   validators: {
-          //     notEmpty: {},
-          //     digits: {},
-          //     phone: {
-          //       country: 'CN'
-          //     }
-          //   }
-          // }
+          title: {
+            validators: {
+              notEmpty: {}
+            }
+          },
+          author: {
+            validators: {
+              notEmpty: {}
+            }
+          },
+          source: {
+            validators: {
+              notEmpty: {}
+            }
+          }
         }
       })
       .on('success.form.fv', function(e) {

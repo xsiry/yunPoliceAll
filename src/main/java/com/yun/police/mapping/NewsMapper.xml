@@ -64,9 +64,6 @@
             <if test="category != null" >
                 category = #{category,jdbcType=VARCHAR},
             </if>
-            <if test="top != null" >
-                top = #{top,jdbcType=VARCHAR},
-            </if>
         </set>
         WHERE id = #{id,jdbcType=INTEGER}
     </update>
