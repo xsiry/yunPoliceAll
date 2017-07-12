@@ -30,6 +30,7 @@ define(function(require, exports, module) {
         // bind .v_mnt_new_modal_btn
       $.root_.on("click", '.new_modal_btn', function(e) {
         var fun = function(dialogRef) {
+          initSummernote();
           newModalValidation();
         }
         newModal('添加新闻', fun);
@@ -170,6 +171,7 @@ define(function(require, exports, module) {
       success : function(responseText) {
         if (responseText.success) {
           var fun = function() {
+            initSummernote();
             newModalValidation();
             var imgs = [];
             $.each(responseText.data, function(key, val) {
@@ -177,7 +179,7 @@ define(function(require, exports, module) {
               if (key == 'imgs') {
                 imgs = val.split(';');
               }else if (key == 'content') {
-                $('pre.flex.x-content').html(val);
+                $('div.summernote').summernote('code', val);
               }
             })
             $.each(imgs, function(i , url) {
@@ -289,8 +291,7 @@ define(function(require, exports, module) {
             }
         })
     };
-
-    function newModal(title, onshowFun) {
+  function newModal(title, onshowFun) {
     var modal = BootstrapDialog.show({
       id: 'newModal',
       title: title,
@@ -384,7 +385,7 @@ define(function(require, exports, module) {
         var bv = $form.data('formValidation');
 
         // Use Ajax to submit form data
-        var formVals = {times: dateFactory('', new Date(), true), content: $('pre.flex.x-content').html()};
+        var formVals = {times: dateFactory('', new Date(), true), content: $('div.summernote').summernote('code')};
         $.each($form.serializeArray(), function(i, o) {
           formVals[o.name] = o.value;
         });
@@ -422,6 +423,29 @@ define(function(require, exports, module) {
         });
       });
   };
+  
+  function initSummernote() {
+      $('.summernote').summernote({
+          height: 300,
+          focus: false,
+          tabsize: 2,
+          lang: 'zh-CN',
+          dialogsInBody: true,
+          disableDragAndDrop: true,
+          placeholder: '请输入..',
+          toolbar: [
+              ['style', ['style']],
+              ['font', ['bold', 'italic', 'underline', 'strikethrough', 'removeFormat', 'clear']],
+              ['color', ['color']],
+              ['para', ['ul', 'ol', 'paragraph']],
+              ['font', ['height']],
+              ['table', ['table']],
+              ['insert', ['hr', 'link']], //, 'video', 'picture'
+              ['view', ['fullscreen', 'codeview']],
+              ['fontname', ['fontname']]
+          ]
+      });
+  }
 
   function dateFactory(str, date, yearBool) {
     function p(s) {
